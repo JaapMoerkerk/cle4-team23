@@ -11,6 +11,7 @@ import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vec
 
 const startHeight = 660
 const startWidth = 400
+const runSpeed = 100
 Physics.gravity = new Vector(0, 3000)
 
 export class Player extends Actor{
@@ -83,8 +84,22 @@ export class Player extends Actor{
             this.graphics.use("jump")
         }
 
-        if(engine.input.keyboard.wasPressed(Input.Keys.A)) {
+        if(engine.input.keyboard.isHeld(Input.Keys.D)) {
             this.graphics.use("run")
+            this.vel = new Vector(runSpeed, 0)
+        }
+        else {
+            this.graphics.use("walk")
+            this.vel = new Vector(0, 0)
+
+
+            if (engine.input.keyboard.isHeld(Input.Keys.A)) {
+                this.graphics.use("run")
+                this.vel = new Vector(-runSpeed, 0)
+            } else {
+                this.graphics.use("walk")
+                this.vel = new Vector(0, 0)
+            }
         }
         }
     }
