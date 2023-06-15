@@ -1,7 +1,16 @@
 import '../css/style.css'
-import {Actor, DisplayMode, Engine, Vector} from "excalibur"
-import { Resources, ResourceLoader } from './resources.js'
+import {DisplayMode, Engine} from "excalibur"
+import {ResourceLoader } from './resources.js'
 import {Startscreen} from "./scenes/startscreen.js";
+
+/**
+ * Main start class
+ *
+ * The main class provides an initial setup in screen width/height,
+ * display mode and loads/starts the first scene
+ *
+ * param: none
+ */
 
 const windowWidth = window.innerWidth       //Slaat de grote op van het scherm bij opstarten
 const windowHeight = window.innerHeight     //en gebruikt dit voor fullscreen.

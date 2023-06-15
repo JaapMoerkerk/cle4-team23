@@ -1,6 +1,16 @@
 import {Actor, Vector, GraphicsGroup, vec} from "excalibur";
 import { Resources } from "../resources.js";
 
+/**
+ * Layered background class
+ *
+ * Every instance makes a moving graphic group (sideways movement)
+ * to provide a repeatable background sprite to seem infinite.
+ *
+ * param: backgroundName (Resources.backgroundName reference) and
+ * backgroundSpeed (sideways speed in an integer)
+ */
+
 export class Background extends Actor{
 
     offset
