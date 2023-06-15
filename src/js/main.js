@@ -2,6 +2,7 @@ import '../css/style.css'
 import {DisplayMode, Engine} from "excalibur"
 import {ResourceLoader } from './resources.js'
 import {Startscreen} from "./scenes/startscreen.js";
+import {player} from  "./classes/player.js"
 
 /**
  * Main start class

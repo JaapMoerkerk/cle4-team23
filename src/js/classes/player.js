@@ -1,4 +1,5 @@
-import {Actor} from "excalibur";
+import { Resources, ResourceLoader } from "../resources.js";
+import {Actor, Vector} from "excalibur";
 
 /**
  * Main character (player) class
@@ -8,6 +9,14 @@ import {Actor} from "excalibur";
  * param:
  */
 
-export class Player extends Actor{
-
+export class player extends Actor{
+    constructor() {
+        super({
+            width: Resources.Player.width,
+            height: Resources.Player.height,
+        });
+        this.graphics.use(Resources.Player.toSprite());
+        this.scale = new Vector(1,1);
+        this.pos = new Vector(120, 500)
+    }
 }
