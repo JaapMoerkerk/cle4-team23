@@ -1,8 +1,7 @@
 import '../css/style.css'
-import {DisplayMode, Engine} from "excalibur"
+import {DisplayMode, Engine, Physics, Vector} from "excalibur"
 import {ResourceLoader } from './resources.js'
 import {Startscreen} from "./scenes/startscreen.js";
-import {player} from  "./classes/player.js"
 
 /**
  * Main start class
@@ -13,19 +12,18 @@ import {player} from  "./classes/player.js"
  * param: none
  */
 
-const windowWidth = window.innerWidth       //Slaat de grote op van het scherm bij opstarten
-const windowHeight = window.innerHeight     //en gebruikt dit voor fullscreen.
+const windowWidth = window.innerWidth
+const windowHeight = window.innerHeight
 
 export class Main extends Engine {
 
     constructor() {
         super({ width: windowWidth, height: windowHeight, displayMode: DisplayMode.FillScreen }) //Fullscreen
         this.start(ResourceLoader).then(() => {
-                this.add('startscreen', new Startscreen()) //Load start screen
-                this.goToScene('startscreen')                  //Go to start screen
+                this.add('startscreen', new Startscreen())
+                this.goToScene('startscreen')
             })
     }
 }
-
 
 new Main()
