@@ -1,4 +1,4 @@
-import { Resources } from "../resources.js";
+import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
 
 /**
@@ -9,18 +9,26 @@ import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vec
  * param:
  */
 
-const startHeight = 660
-const startWidth = 400
-const runSpeed = 100
-Physics.gravity = new Vector(0, 3000)
+/**
+ * Start variables like starting position (x and y), movement speed and the
+ * amount of gravity applied to the scene.
+ */
 
-export class Player extends Actor{
+const startY = 660
+const startX = 400
+const runSpeed = 200
+let jumping = false
+
+export class Player extends Actor {
     constructor() {
-        super()
+        super({
+            width: 100,
+            height: 200
+        })
 
         /**
-         * The following code defines our players spritesheet animations,
-         * like walk, run and jump.
+         * SpriteSheet settings (defining the SpriteSheet so that animations
+         * can be drawn from it)
          * @type {SpriteSheet}
          */
 
@@ -54,53 +62,66 @@ export class Player extends Actor{
             }
         })
 
+        /**
+         * Animation setting (setting dimensions, selecting sheets and
+         * animation speed)
+         * @type {Animation}
+         */
+
         const walk = Animation.fromSpriteSheet(walkSheet, range(0, 14), 50)
         this.graphics.add("walk", walk)
 
-        const run = Animation.fromSpriteSheet(runSheet, range(0,14), 50)
+        const run = Animation.fromSpriteSheet(runSheet, range(0, 14), 50)
         this.graphics.add("run", run)
 
-        const jump = Animation.fromSpriteSheet(jumpSheet, range(0,14), 50)
+        const jump = Animation.fromSpriteSheet(jumpSheet, range(0, 14), 50)
         this.graphics.add("jump", jump)
+
+        const walkSlow = Animation.fromSpriteSheet(walkSheet, range(0, 14), 120)
+        this.graphics.add("walkslow", walkSlow)
+
         /**
          * Standard animation setting, scale and position
          */
 
-        this.graphics.use("walk")
+        this.graphics.use("walkslow")
         this.scale.scaleEqual(0.4)
     }
 
     onInitialize(engine) {
-        this.pos = new Vector(startWidth, startHeight)
+        this.pos = new Vector(startX, startY)
         this.vel = new Vector(0, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = false
     }
 
-    onPreUpdate(engine, delta) {
-        if(engine.input.keyboard.wasPressed(Input.Keys.Space)){
-            this.vel = new Vector(0, -1000)
-            this.body.useGravity = true
-            this.graphics.use("jump")
-        }
+    /**
+     * Standard movement mechanics and keyboard controls
+     */
 
-        if(engine.input.keyboard.isHeld(Input.Keys.D)) {
+    onPreUpdate(engine, delta) {
+        if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
+            this.jump()
+        }
+        if (engine.input.keyboard.isHeld(Input.Keys.D)) {
             this.graphics.use("run")
             this.vel = new Vector(runSpeed, 0)
+            this.body.useGravity = false
         }
-        else {
-            this.graphics.use("walk")
-            this.vel = new Vector(0, 0)
 
+        if (engine.input.keyboard.isHeld(Input.Keys.A)) {
+            this.graphics.use("walkslow")
+            this.vel = new Vector(-runSpeed, 0)
+            this.body.useGravity = false
+        }
 
-            if (engine.input.keyboard.isHeld(Input.Keys.A)) {
-                this.graphics.use("run")
-                this.vel = new Vector(-runSpeed, 0)
-            } else {
-                this.graphics.use("walk")
-                this.vel = new Vector(0, 0)
-            }
-        }
-        }
     }
+
+    jump() {
+        this.vel = new Vector(0, -1000)
+        this.graphics.use("jump")
+        this.body.useGravity = true
+    }
+}
+
 
