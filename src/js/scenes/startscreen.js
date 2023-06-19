@@ -3,6 +3,7 @@ import {Resources} from "../resources.js";
 import {Background} from "../classes/background.js";
 import {Player} from "../classes/player.js";
 import {Ground} from "../classes/ground.js";
+import {Settings} from "../classes/settings.js";
 
 /**
  * Startscreen (scene 1) class
@@ -25,7 +26,7 @@ export class Startscreen extends Scene{
         this.add(background1)
         const player = new Player()
         this.add(player)
-        const ground = new Ground()
+        const ground = new Ground(Settings.groundHeight)
         this.add(ground)
     }
 }

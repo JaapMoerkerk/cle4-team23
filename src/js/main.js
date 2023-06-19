@@ -13,13 +13,10 @@ import {Startscreen} from "./scenes/startscreen.js";
  * param: none
  */
 
-const windowWidth = window.innerWidth
-const windowHeight = window.innerHeight
-
 export class Main extends Engine {
 
     constructor() {
-        super({width: windowWidth, height: windowHeight, displayMode: DisplayMode.FillScreen}) //Fullscreen
+        super({width: window.innerWidth, height: window.innerHeight, displayMode: DisplayMode.FillScreen}) //Fullscreen
         this.start(ResourceLoader).then(() => {
             this.add('startscreen', new Startscreen())
             this.goToScene('startscreen')

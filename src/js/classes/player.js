@@ -1,23 +1,15 @@
 import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
+import {Settings} from "../classes/settings.js"
 
 /**
  * Main character (player) class
  *
  * New instance creates the main player
+ * Super constructs hitbox
  *
  * param:
  */
-
-/**
- * Start variables like starting position (x and y), movement speed and the
- * amount of gravity applied to the scene.
- */
-
-const startY = 660
-const startX = 400
-const runSpeed = 200
-let jumping = false
 
 export class Player extends Actor {
     constructor() {
@@ -37,8 +29,8 @@ export class Player extends Actor {
             grid: {
                 rows: 1,
                 columns: 15,
-                spriteHeight: 564,
-                spriteWidth: 614
+                spriteHeight: 500,
+                spriteWidth: 300
             }
         })
 
@@ -89,7 +81,7 @@ export class Player extends Actor {
     }
 
     onInitialize(engine) {
-        this.pos = new Vector(startX, startY)
+        this.pos = new Vector(Settings.startX, Settings.startY)
         this.vel = new Vector(0, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = false
@@ -103,18 +95,22 @@ export class Player extends Actor {
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
         }
-        if (engine.input.keyboard.isHeld(Input.Keys.D)) {
-            this.graphics.use("run")
-            this.vel = new Vector(runSpeed, 0)
-            this.body.useGravity = false
+        if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
+            this.moveRight()
         }
 
         if (engine.input.keyboard.isHeld(Input.Keys.A)) {
             this.graphics.use("walkslow")
-            this.vel = new Vector(-runSpeed, 0)
+            this.vel = new Vector(-Settings.runSpeed, 0)
             this.body.useGravity = false
         }
 
+    }
+
+    moveRight(){
+        this.graphics.use("run")
+        this.vel = new Vector(Settings.runSpeed, 0)
+        this.body.useGravity = false
     }
 
     jump() {

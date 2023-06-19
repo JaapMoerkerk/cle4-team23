@@ -9,14 +9,12 @@ import {Actor, CollisionType, Vector} from "excalibur";
  * param:
  */
 
-const groundHeight = 150
-
 export class Ground extends Actor{
-    constructor() {
+    constructor(height) {
         super({
             width: window.innerWidth,
-            height: 140,
-            y: window.innerHeight - 140,
+            height: height,
+            y: window.innerHeight - height,
             anchor: new Vector(0, 0)
         })
         console.log(window.innerWidth)
