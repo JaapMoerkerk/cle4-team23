@@ -2,6 +2,7 @@ import '../css/style.css'
 import {Color, DisplayMode, Engine, Line, Physics, Vector} from "excalibur"
 import {ResourceLoader} from './resources.js'
 import {Startscreen} from "./scenes/startscreen.js";
+import {Settings} from "./classes/settings.js";
 
 /**
  * Main start class
@@ -22,7 +23,7 @@ export class Main extends Engine {
             this.goToScene('startscreen')
         })
         Physics.useArcadePhysics()
-        Physics.gravity = new Vector(0, 3000)
+        Physics.gravity = new Vector(0, Settings.gravity)
 
         this.showDebug(true)
     }
