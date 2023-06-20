@@ -7,5 +7,7 @@ export const Settings = {
     startY: 660,
     startX: 400,
     runSpeed: 200,
-    groundHeight: 150
+    groundHeight: 150,
+    trashStartx: 860,
+    trashStarty: 580,
 }

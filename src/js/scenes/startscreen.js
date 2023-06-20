@@ -4,6 +4,7 @@ import {Background} from "../classes/background.js";
 import {Player} from "../classes/player.js";
 import {Ground} from "../classes/ground.js";
 import {Settings} from "../classes/settings.js";
+import {Trash} from "../classes/trash.js"
 
 /**
  * Startscreen (scene 1) class
@@ -28,6 +29,8 @@ export class Startscreen extends Scene{
         this.add(player)
         const ground = new Ground(Settings.groundHeight)
         this.add(ground)
+        const trashCan1 = new Trash()
+        this.add(trashCan1)
     }
 }
 
