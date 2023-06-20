@@ -14,8 +14,9 @@ import {Settings} from "../classes/settings.js"
 export class Player extends Actor {
     constructor() {
         super({
-            width: 100,
-            height: 200
+            width: 330,
+            height: 510,
+            anchor: new Vector(0, 0)
         })
 
         /**
@@ -29,8 +30,8 @@ export class Player extends Actor {
             grid: {
                 rows: 1,
                 columns: 15,
-                spriteHeight: 500,
-                spriteWidth: 300
+                spriteHeight: 564,
+                spriteWidth: 614
             }
         })
 
@@ -84,7 +85,7 @@ export class Player extends Actor {
         this.pos = new Vector(Settings.startX, Settings.startY)
         this.vel = new Vector(0, 0)
         this.body.collisionType = CollisionType.Active
-        this.body.useGravity = false
+        this.body.useGravity = true
     }
 
     /**
@@ -92,17 +93,17 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
+
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
         }
+
         if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
             this.moveRight()
         }
 
-        if (engine.input.keyboard.isHeld(Input.Keys.A)) {
-            this.graphics.use("walkslow")
-            this.vel = new Vector(-Settings.runSpeed, 0)
-            this.body.useGravity = false
+        if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
+            this.moveLeft()
         }
 
     }
@@ -110,7 +111,11 @@ export class Player extends Actor {
     moveRight(){
         this.graphics.use("run")
         this.vel = new Vector(Settings.runSpeed, 0)
-        this.body.useGravity = false
+    }
+
+    moveLeft(){
+        this.graphics.use("walkslow")
+        this.vel = new Vector(-Settings.runSpeed, 0)
     }
 
     jump() {
