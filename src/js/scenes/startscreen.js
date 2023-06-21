@@ -29,8 +29,8 @@ export class Startscreen extends Scene{
         this.add(player)
         const ground = new Ground(Settings.groundHeight)
         this.add(ground)
-        // const trashCan1 = new Trash()
-        // this.add(trashCan1)
+        const trashCan1 = new Trash()
+        this.add(trashCan1)
         // const spawner1 = Spawner
         // this.add(spawner1)
     }

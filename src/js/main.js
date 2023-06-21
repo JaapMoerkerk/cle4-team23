@@ -17,7 +17,7 @@ import {Settings} from "./classes/settings.js";
 export class Main extends Engine {
 
     constructor() {
-        super({width: window.innerWidth, height: window.innerHeight, displayMode: DisplayMode.FillScreen}) //Fullscreen
+        super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.Fixed}) //Fullscreen
         this.start(ResourceLoader).then(() => {
             this.add('startscreen', new Startscreen())
             this.goToScene('startscreen')

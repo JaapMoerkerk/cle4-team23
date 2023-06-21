@@ -4,11 +4,13 @@
  */
 
 export const Settings = {
-    startY: 660,
-    startX: 400,
+    screenWidth: 1000,
+    screenHeight: 600,
+    startY: 100,
+    startX: 200,
     runSpeed: 200,
-    groundHeight: 150,
+    groundHeight: 50,
     trashStartx: 860,
-    trashStarty: 580,
+    trashStarty: 510,
     gravity: 3000
 }

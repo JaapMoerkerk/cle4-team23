@@ -1,4 +1,5 @@
 import {Actor, CollisionType, Vector} from "excalibur";
+import {Settings} from "./settings.js";
 
 /**
  * Floor/ground class
@@ -12,9 +13,9 @@ import {Actor, CollisionType, Vector} from "excalibur";
 export class Ground extends Actor{
     constructor(height) {
         super({
-            width: window.innerWidth,
+            width: Settings.screenWidth,
             height: height,
-            y: window.innerHeight - height,
+            y: Settings.screenHeight - height,
             anchor: new Vector(0, 0)
         })
         this.body.collisionType = CollisionType.Fixed
