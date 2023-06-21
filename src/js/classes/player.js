@@ -18,7 +18,7 @@ export class Player extends Actor {
             height: 510,
             anchor: new Vector(0, 0),
         })
-
+        this.speed = 0
         this.isJumping = false
 
         /**
@@ -85,7 +85,7 @@ export class Player extends Actor {
 
     onInitialize(engine) {
         this.pos = new Vector(Settings.startX, Settings.startY)
-        this.vel = new Vector(0, 0)
+        this.vel = new Vector(this.speed, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = true
     }
@@ -95,7 +95,7 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
-        console.log(this.pos.y)
+        this.vel.x = this.speed
         if(this.isJumping){
             return
         }
@@ -108,12 +108,12 @@ export class Player extends Actor {
 
         if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
             this.graphics.use('run')
-            this.vel = new Vector(Settings.runSpeed, 0)
+            this.speed += Settings.runSpeed
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
             this.graphics.use('walkslow')
-            this.vel = new Vector(-Settings.runSpeed, 0)
+            this.speed -= Settings.runSpeed
         }
     }
 
