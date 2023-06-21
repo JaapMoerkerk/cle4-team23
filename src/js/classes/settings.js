@@ -9,8 +9,8 @@ export const Settings = {
     startY: 100,
     startX: 200,
     runSpeed: 200,
-    groundHeight: 50,
-    trashStartx: 860,
-    trashStarty: 510,
+    groundHeight: 150,
+    trashStartX: 860,
+    trashStartY: 420,
     gravity: 3000
 }

@@ -87,6 +87,7 @@ export class Player extends Actor {
         this.vel = new Vector(0, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = true
+        console.log(this.pos.y)
     }
 
     /**
@@ -94,7 +95,7 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
-        console.log(this.vel, this.pos)
+        console.log(this.pos.y)
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
         }
