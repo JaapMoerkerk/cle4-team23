@@ -4,10 +4,10 @@
  */
 
 export const Settings = {
-    startY: 660,            //X-coordinate of player sprite
-    startX: 400,            //Y-coordinate of player sprite
-    runSpeed: 200,          //Speed of sideways movement (A/D)
-    groundHeight: 150,      //Height of 'floor' hitbox
-    gravity: 3000,          //Intensity of gravity applied in game
-
+    startY: 660,
+    startX: 400,
+    runSpeed: 200,
+    groundHeight: 150,
+    trashStartx: 860,
+    trashStarty: 580,
 }
