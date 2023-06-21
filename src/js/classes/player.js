@@ -56,6 +56,7 @@ export class Player extends Actor {
             }
         })
 
+
         /**
          * Animation setting (setting dimensions, selecting sheets and
          * animation speed)
@@ -98,6 +99,7 @@ export class Player extends Actor {
         console.log(this.pos.y)
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
+
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
@@ -121,6 +123,7 @@ export class Player extends Actor {
     }
 
     jump() {
+        Resources.JumpSound.play(1)
         this.vel = new Vector(0, -1000)
         this.graphics.use("jump")
     }
