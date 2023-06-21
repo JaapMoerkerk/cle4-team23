@@ -17,7 +17,7 @@ export class Player extends Actor {
         super({
             width: 330,
             height: 510,
-            anchor: new Vector(0, 0)
+            anchor: new Vector(0, 0),
         })
 
         /**
@@ -94,7 +94,7 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
-        console.log()
+        console.log(this.vel, this.pos)
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
         }

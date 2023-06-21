@@ -10,4 +10,5 @@ export const Settings = {
     groundHeight: 150,
     trashStartx: 860,
     trashStarty: 580,
+    gravity: 3000
 }

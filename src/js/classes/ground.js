@@ -17,7 +17,6 @@ export class Ground extends Actor{
             y: window.innerHeight - height,
             anchor: new Vector(0, 0)
         })
-        console.log(window.innerWidth)
         this.body.collisionType = CollisionType.Fixed
     }
 }
