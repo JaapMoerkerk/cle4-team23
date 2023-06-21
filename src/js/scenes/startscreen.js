@@ -23,6 +23,7 @@ export class Startscreen extends Scene{
     }
 
     onInitialize(engine) {
+        Resources.Music.play(0.5)
         const background1 = new Background("Background", 200)
         this.add(background1)
         const player = new Player()
@@ -31,6 +32,7 @@ export class Startscreen extends Scene{
         this.add(ground)
         const trashCan1 = new Trash()
         this.add(trashCan1)
+
         // const spawner1 = Spawner
         // this.add(spawner1)
     }
