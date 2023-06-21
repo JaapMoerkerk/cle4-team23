@@ -13,6 +13,7 @@ import {Settings} from "../classes/settings.js"
 
 export class Player extends Actor {
     constructor() {
+
         super({
             width: 330,
             height: 510,
@@ -93,7 +94,7 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
-
+        console.log()
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.jump()
         }
@@ -121,7 +122,6 @@ export class Player extends Actor {
     jump() {
         this.vel = new Vector(0, -1000)
         this.graphics.use("jump")
-        this.body.useGravity = true
     }
 }
 

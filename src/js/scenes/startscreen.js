@@ -21,7 +21,6 @@ export class Startscreen extends Scene{
     }
 
     onInitialize(engine) {
-        console.log("Startscherm")
         const background1 = new Background("Background", 200)
         this.add(background1)
         const player = new Player()
