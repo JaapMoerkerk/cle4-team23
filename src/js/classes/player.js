@@ -13,12 +13,13 @@ import {Settings} from "./settings.js"
 
 export class Player extends Actor {
     constructor() {
-
         super({
             width: 330,
             height: 510,
             anchor: new Vector(0, 0),
         })
+        this.speed = 0
+        this.isJumping = false
 
         /**
          * SpriteSheet settings (defining the SpriteSheet so that animations
@@ -56,7 +57,6 @@ export class Player extends Actor {
             }
         })
 
-
         /**
          * Animation setting (setting dimensions, selecting sheets and
          * animation speed)
@@ -79,16 +79,15 @@ export class Player extends Actor {
          * Standard animation setting, scale and position
          */
 
-        this.graphics.use("walkslow")
+        this.graphics.use("walk")
         this.scale.scaleEqual(0.4)
     }
 
     onInitialize(engine) {
         this.pos = new Vector(Settings.startX, Settings.startY)
-        this.vel = new Vector(0, 0)
+        this.vel = new Vector(this.speed, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = true
-        console.log(this.pos.y)
     }
 
     /**
@@ -96,36 +95,42 @@ export class Player extends Actor {
      */
 
     onPreUpdate(engine, delta) {
-        console.log(this.pos.y)
-        if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
-            this.jump()
+        this.vel.x = this.speed
+        if(this.isJumping){
+            return
+        }
 
+        if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
+            this.vel = new Vector(0, -1000)
+            this.graphics.use('jump')
+            this.isJumping = true
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
-            this.moveRight()
+            this.graphics.use('run')
+            this.speed += Settings.runSpeed
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
-            this.moveLeft()
+            this.graphics.use('walkslow')
+            this.speed -= Settings.runSpeed
+        }
+    }
+
+    onPostUpdate(engine, delta) {
+        if (this.isJumping && this.pos.y >= 345){
+            this.isJumping = false
         }
 
-    }
+        if (engine.input.keyboard.wasReleased(Input.Keys.D)){
+            this.vel = new Vector (0, 0)
+            this.graphics.use('walk')
+        }
 
-    moveRight(){
-        this.graphics.use("run")
-        this.vel = new Vector(Settings.runSpeed, 0)
-    }
-
-    moveLeft(){
-        this.graphics.use("walkslow")
-        this.vel = new Vector(-Settings.runSpeed, 0)
-    }
-
-    jump() {
-        Resources.JumpSound.play(1)
-        this.vel = new Vector(0, -1000)
-        this.graphics.use("jump")
+        if (engine.input.keyboard.wasReleased(Input.Keys.A)){
+            this.vel = new Vector (0, 0)
+            this.graphics.use('walk')
+        }
     }
 }
 

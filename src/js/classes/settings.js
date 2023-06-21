@@ -4,13 +4,19 @@
  */
 
 export const Settings = {
+    //General
+    gravity: 3000,
     screenWidth: 1000,
     screenHeight: 600,
+    groundHeight: 50,
+
+    //Player:
     startY: 100,
     startX: 200,
     runSpeed: 200,
-    groundHeight: 150,
-    trashStartX: 860,
-    trashStartY: 420,
-    gravity: 3000
+
+    //Obstacle
+    trashStartx: 860,
+    trashStarty: 510,
+
 }
