@@ -1,6 +1,6 @@
 import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
-import {Settings} from "../classes/settings.js"
+import {Settings} from "./settings.js"
 
 /**
  * Main character (player) class

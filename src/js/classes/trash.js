@@ -5,8 +5,8 @@ import {Settings} from "./settings.js";
 export class Trash extends Actor {
     constructor() {
         super({
-            width: 3000,
-            height: 3000,
+            width: 70/0.02,
+            height: 100/0.02,
         })
 
         this.graphics.use(Resources.Trash.toSprite())
