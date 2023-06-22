@@ -104,31 +104,32 @@ export class Player extends Actor {
             this.vel = new Vector(0, -1000)
             this.graphics.use('jump')
             this.isJumping = true
+            Resources.JumpSound.play(1)
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.D)) {
             this.graphics.use('run')
-            this.speed += Settings.runSpeed
+            if (this.speed <= 0){
+                this.speed = Settings.runSpeed
+            }
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
             this.graphics.use('walkslow')
-            this.speed -= Settings.runSpeed
+            if (this.speed >= 0){
+                this.speed = -Settings.runSpeed
+            }
         }
     }
 
     onPostUpdate(engine, delta) {
         if (this.isJumping && this.pos.y >= 345){
             this.isJumping = false
-        }
-
-        if (engine.input.keyboard.wasReleased(Input.Keys.D)){
-            this.vel = new Vector (0, 0)
             this.graphics.use('walk')
         }
 
-        if (engine.input.keyboard.wasReleased(Input.Keys.A)){
-            this.vel = new Vector (0, 0)
+        if (engine.input.keyboard.wasReleased(Input.Keys.D) || engine.input.keyboard.wasReleased((Input.Keys.A))){
+            this.speed = 0
             this.graphics.use('walk')
         }
     }

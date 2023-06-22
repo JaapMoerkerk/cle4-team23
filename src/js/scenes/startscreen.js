@@ -34,6 +34,8 @@ export class Startscreen extends Scene{
         this.add(trashCan1)
         const spawner1 = new Spawner()
         this.add(spawner1)
+        // const spawner1 = Spawner
+        // this.add(spawner1)
     }
 }
 
