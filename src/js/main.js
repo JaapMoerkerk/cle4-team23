@@ -19,7 +19,7 @@ export class Main extends Engine {
     constructor() {
         super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.Fixed}) //Fullscreen
         this.start(ResourceLoader).then(() => {
-            this.add('startScreen', new menuScreen())
+            this.add('startScreen', new menuScreen(this))
             this.goToScene('startScreen')
         })
         Physics.useArcadePhysics()

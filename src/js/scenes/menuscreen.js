@@ -2,8 +2,9 @@ import {Font, FontUnit, Label, Scene, Vector} from "excalibur";
 import { Level1 } from "./level1.js";
 
 export class menuScreen extends Scene {
-    constructor() {
+    constructor(engine) {
         super();
+        this.engine = engine;
     }
 
     onInitialize(engine) {
@@ -26,7 +27,7 @@ export class menuScreen extends Scene {
         // Event listener for start button click
         label.on("pointerup", () => {
             console.log('Start label clicked');
-            const level1 = new Level1();
+            const level1 = new Level1(this.engine);
             engine.addScene("level1", level1);
             engine.goToScene("level1");
         });

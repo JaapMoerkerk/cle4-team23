@@ -2,9 +2,10 @@ import { Actor, Random, Timer } from "excalibur";
 import { Trash } from "./trash.js";
 
 export class Spawner extends Actor {
-    constructor() {
+    constructor(gameinstance) {
         super();
         this.random = new Random(1337);
+        this.gameinstance = gameinstance
     }
 
     onInitialize(engine) {
@@ -22,7 +23,8 @@ export class Spawner extends Actor {
         console.log("spawn");
         const Trash1 = new Trash(
             this.random.integer(0, 800),
-            this.random.integer(0, 600)
+            this.random.integer(0, 600),
+            this.gameinstance
         );
         engine.currentScene.add(Trash1);
 

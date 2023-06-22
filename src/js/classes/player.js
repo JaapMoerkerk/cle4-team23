@@ -1,7 +1,7 @@
 import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
 import {Settings} from "../settings.js"
-
+import * as ex from "excalibur"
 /**
  * Main character (player) class
  *
@@ -14,10 +14,11 @@ import {Settings} from "../settings.js"
 export class Player extends Actor {
     constructor() {
         super({
-            width: 330,
-            height: 510,
-            anchor: new Vector(0, 0),
-        })
+
+            pos: new ex.Vector(100, 100),
+            collider: ex.Shape.Box(250,200, ex.Vector.Left, ex.vec(-600,0))
+
+        });
         this.speed = 0
         this.isJumping = false
 
@@ -133,6 +134,7 @@ export class Player extends Actor {
             this.graphics.use('walk')
         }
     }
+
 }
 
 

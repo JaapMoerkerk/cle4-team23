@@ -18,8 +18,9 @@ import {Spawner} from "../classes/spawner.js";
  */
 
 export class Level1 extends Scene{
-    constructor() {
+    constructor(engine) {
         super()
+        this.engine = engine
     }
 
     onInitialize(engine) {
@@ -30,9 +31,9 @@ export class Level1 extends Scene{
         this.add(player)
         const ground = new Ground(Settings.groundHeight)
         this.add(ground)
-        const trashCan1 = new Trash()
+        const trashCan1 = new Trash(this.engine)
         this.add(trashCan1)
-        const spawner1 = new Spawner()
+        const spawner1 = new Spawner(engine)
         this.add(spawner1)
     }
 }
