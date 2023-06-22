@@ -13,8 +13,8 @@ export class Trash extends Actor {
         this.scale.scaleEqual(0.02)
     }
     onInitialize(engine) {
-        this.pos = new Vector(Settings.trashStartX, Settings.trashStartY)
-        this.vel = new Vector(-40, 0)
+        this.pos = new Vector(Settings.trashStartx, Settings.trashStarty)
+        this.vel = new Vector(-280, 0)
         this.body.collisionType = CollisionType.Fixed
         this.body.useGravity = false
     }

@@ -31,6 +31,6 @@ export class Spawner extends Actor {
     }
 
     getRandomInterval() {
-        return this.random.integer(6000, 14000);
+        return this.random.integer(5000, 10000);
     }
 }
