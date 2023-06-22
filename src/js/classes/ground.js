@@ -1,5 +1,5 @@
 import {Actor, CollisionType, Vector} from "excalibur";
-import {Settings} from "./settings.js";
+import {Settings} from "../settings.js";
 
 /**
  * Floor/ground class

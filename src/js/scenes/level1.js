@@ -3,7 +3,7 @@ import {Resources} from "../resources.js";
 import {Background} from "../classes/background.js";
 import {Player} from "../classes/player.js";
 import {Ground} from "../classes/ground.js";
-import {Settings} from "../classes/settings.js";
+import {Settings} from "../settings.js";
 import {Trash} from "../classes/trash.js"
 import {Spawner} from "../classes/spawner.js";
 
@@ -17,7 +17,7 @@ import {Spawner} from "../classes/spawner.js";
  * param: none
  */
 
-export class Startscreen extends Scene{
+export class Level1 extends Scene{
     constructor() {
         super()
     }
@@ -34,8 +34,6 @@ export class Startscreen extends Scene{
         this.add(trashCan1)
         const spawner1 = new Spawner()
         this.add(spawner1)
-        // const spawner1 = Spawner
-        // this.add(spawner1)
     }
 }
 

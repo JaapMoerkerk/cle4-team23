@@ -1,6 +1,6 @@
 import { Resources } from "../resources.js";
 import {Actor, CollisionType, Engine, Vector} from "excalibur";
-import {Settings} from "./settings.js";
+import {Settings} from "../settings.js";
 
 export class Trash extends Actor {
     constructor() {

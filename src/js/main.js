@@ -1,8 +1,8 @@
 import '../css/style.css'
 import {Color, DisplayMode, Engine, Line, Physics, Vector} from "excalibur"
 import {ResourceLoader} from './resources.js'
-import {Startscreen} from "./scenes/startscreen.js";
-import {Settings} from "./classes/settings.js";
+import {menuScreen} from "./scenes/menuscreen.js";
+import {Settings} from "./settings.js";
 
 /**
  * Main start class
@@ -19,8 +19,8 @@ export class Main extends Engine {
     constructor() {
         super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.Fixed}) //Fullscreen
         this.start(ResourceLoader).then(() => {
-            this.add('startscreen', new Startscreen())
-            this.goToScene('startscreen')
+            this.add('startScreen', new menuScreen())
+            this.goToScene('startScreen')
         })
         Physics.useArcadePhysics()
         Physics.gravity = new Vector(0, Settings.gravity)

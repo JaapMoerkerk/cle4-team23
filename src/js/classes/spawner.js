@@ -1,6 +1,5 @@
 import { Actor, Random, Timer } from "excalibur";
 import { Trash } from "./trash.js";
-import { Settings } from "./settings.js";
 
 export class Spawner extends Actor {
     constructor() {
