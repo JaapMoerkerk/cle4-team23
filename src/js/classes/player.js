@@ -1,7 +1,7 @@
 import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
 import {Settings} from "../settings.js"
-import * as ex from "excalibur"
+
 /**
  * Main character (player) class
  *
@@ -14,11 +14,10 @@ import * as ex from "excalibur"
 export class Player extends Actor {
     constructor() {
         super({
-
-            pos: new ex.Vector(100, 100),
-            collider: ex.Shape.Box(250,200, ex.Vector.Left, ex.vec(-600,0))
-
-        });
+            width: 140,
+            height: 510,
+            anchor: new Vector(0.15, 0),
+        })
         this.speed = 0
         this.isJumping = false
 
@@ -103,7 +102,6 @@ export class Player extends Actor {
 
         if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
             this.vel = new Vector(0, -1000)
-            this.graphics.use('jump')
             this.isJumping = true
             Resources.JumpSound.play(1)
         }
@@ -124,6 +122,10 @@ export class Player extends Actor {
     }
 
     onPostUpdate(engine, delta) {
+        if (this.isJumping){
+            this.graphics.use('jump')
+        }
+
         if (this.isJumping && this.pos.y >= 345){
             this.isJumping = false
             this.graphics.use('walk')
@@ -134,7 +136,6 @@ export class Player extends Actor {
             this.graphics.use('walk')
         }
     }
-
 }
 
 

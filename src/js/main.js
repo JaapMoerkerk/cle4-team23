@@ -17,10 +17,10 @@ import {Settings} from "./settings.js";
 export class Main extends Engine {
 
     constructor() {
-        super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.Fixed}) //Fullscreen
+        super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.FillScreen})
         this.start(ResourceLoader).then(() => {
-            this.add('startScreen', new menuScreen(this))
-            this.goToScene('startScreen')
+            this.add('menuScreen', new menuScreen())
+            this.goToScene('menuScreen')
         })
         Physics.useArcadePhysics()
         Physics.gravity = new Vector(0, Settings.gravity)

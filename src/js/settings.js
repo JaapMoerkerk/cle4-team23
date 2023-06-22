@@ -6,17 +6,17 @@
 export const Settings = {
     //General
     gravity: 3000,
-    screenWidth: 1000,
-    screenHeight: 600,
-    groundHeight: 50,
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight,
+    groundHeight: 200,
 
     //Player:
-    startY: 100,
+    startY: 500,
     startX: 200,
     runSpeed: 200,
 
     //Obstacle
-    trashStartx: 860,
-    trashStarty: 510,
+    trashStartx: 2500,
+    trashStarty: window.innerHeight - 250,
 
 }

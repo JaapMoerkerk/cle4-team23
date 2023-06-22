@@ -1,44 +1,62 @@
-import {Font, FontUnit, Label, Scene, Vector} from "excalibur";
+import {Color, Font, FontUnit, Input, Label, Scene, Vector as textAlign, Vector} from "excalibur";
 import { Level1 } from "./level1.js";
+import {Background} from "../classes/background.js";
+import {Settings} from "../settings.js";
 
 export class menuScreen extends Scene {
-    constructor(engine) {
+    constructor() {
         super();
-        this.engine = engine;
     }
 
     onInitialize(engine) {
-        console.log('menuScreen onInitialize() called');
 
-        // Initialize scene actors
-        const label = new Label({
-            width: 100,
-            height: 100,
-            anchor: new Vector(0, 0),
-            text: 'Start',
-            pos: new Vector(100, 100),
+        const level1 = new Level1();
+        engine.addScene("level1", level1);
+
+        const startMessage = new Label({
+            text: "PRESS SPACE TO CONTINUE",
+            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight - 200),
             font: new Font({
                 family: 'impact',
+                color: Color.Cyan,
+                size: 50,
+                unit: FontUnit.Px
+            })
+        })
+
+        startMessage.pos.x = Settings.screenWidth/2 - startMessage.getTextWidth()*2
+
+        const settings = new Label({
+            width: 190,
+            height: 50,
+            anchor: new Vector(0.002, 0.8),
+            text: 'SETTINGS',
+            pos: new Vector(
+                Settings.screenWidth - 200,
+                Settings.screenHeight - 20),
+            font: new Font({
+                family: 'impact',
+                color: Color.White,
                 size: 50,
                 unit: FontUnit.Px
             })
         });
 
         // Event listener for start button click
-        label.on("pointerup", () => {
-            console.log('Start label clicked');
-            const level1 = new Level1(this.engine);
-            engine.addScene("level1", level1);
-            engine.goToScene("level1");
+        settings.on("pointerup", () => {
+            //Go to settings scene
         });
 
         // Add the label actor to the scene
-        this.add(label);
-
-        console.log('menuScreen initialization completed');
+        const menuBackground = new Background('Background', 50)
+        this.add(menuBackground)
+        this.add(settings);
+        this.add(startMessage)
     }
 
     onPostUpdate(engine, delta) {
-
+        if(engine.input.keyboard.wasPressed(Input.Keys.Space)) {
+            engine.goToScene("level1");
+        }
     }
 }

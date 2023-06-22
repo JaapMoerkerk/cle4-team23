@@ -20,7 +20,7 @@ export class Trash extends Actor {
     onInitialize(engine) {
         this.on('precollision', (event) =>  this.onPreCollision(event))
         this.pos = new Vector(Settings.trashStartx, Settings.trashStarty)
-        this.vel = new Vector(-280, 0)
+        this.vel = new Vector(-400, 0)
         const gameOverLabel = new ex.Label({
             text: "Game Over je zuigt"
         })
