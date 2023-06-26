@@ -1,6 +1,6 @@
 import {Font, FontUnit, Label, Scene, Vector} from "excalibur";
 
-export class EndScreen extends Scene {
+export class Gameover extends Scene {
     onInitialize(engine) {
         const gameOverLabel = new Label({
             text: `Game Over`,

@@ -1,7 +1,7 @@
 import '../css/style.css'
 import {Color, DisplayMode, Engine, Line, Physics, Vector} from "excalibur"
 import {ResourceLoader} from './resources.js'
-import {menuScreen} from "./scenes/menuscreen.js";
+import {Menuscreen} from "./scenes/menuscreen.js";
 import {Settings} from "./settings.js";
 
 /**
@@ -19,7 +19,7 @@ export class Main extends Engine {
     constructor() {
         super({width: Settings.screenWidth, height: Settings.screenHeight, displayMode: DisplayMode.FillScreen})
         this.start(ResourceLoader).then(() => {
-            this.add('menuScreen', new menuScreen())
+            this.add('menuScreen', new Menuscreen())
             this.goToScene('menuScreen')
         })
         Physics.useArcadePhysics()

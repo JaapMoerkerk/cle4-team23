@@ -1,7 +1,7 @@
 import { Resources } from "../resources.js";
 import {Actor, CollisionType, Engine, Vector} from "excalibur";
 import {Settings} from "../settings.js";
-import {EndScreen} from "../scenes/endScreen.js";
+import {Gameover} from "../scenes/gameover.js";
 
 import * as ex from "excalibur"
 import {Player} from "./player";
@@ -29,9 +29,9 @@ export class Trash extends Actor {
     }
     onPreCollision(event){
         if(event.other instanceof Player){
-            console.log('game over je zuig')
-            const endgame = new EndScreen();
-            this.gameinstance.add('gameover', endgame)
+            console.log('game over je zuigt')
+            const gameover = new Gameover();
+            this.gameinstance.add('gameover', gameover)
             this.gameinstance.goToScene('gameover')
         }
     }
