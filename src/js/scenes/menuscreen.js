@@ -3,7 +3,7 @@ import { Level1 } from "./level1.js";
 import {Background} from "../classes/background.js";
 import {Settings} from "../settings.js";
 
-export class menuScreen extends Scene {
+export class Menuscreen extends Scene {
     constructor() {
         super();
     }
@@ -15,11 +15,22 @@ export class menuScreen extends Scene {
 
         const startMessage = new Label({
             text: "PRESS SPACE TO CONTINUE",
-            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight - 200),
+            pos: new Vector(0, Settings.screenHeight - 200),
             font: new Font({
                 family: 'impact',
                 color: Color.Cyan,
                 size: 50,
+                unit: FontUnit.Px
+            })
+        })
+
+        const title = new Label({
+            text: "Parkrunner 1943",
+            pos: new Vector(220, Settings.screenHeight/2 - 100),
+            font: new Font({
+                family: 'impact',
+                color: Color.Red,
+                size: 160,
                 unit: FontUnit.Px
             })
         })
@@ -50,8 +61,10 @@ export class menuScreen extends Scene {
         // Add the label actor to the scene
         const menuBackground = new Background('Background', 50)
         this.add(menuBackground)
-        this.add(settings);
+
         this.add(startMessage)
+        this.add(title)
+        this.add(settings)
     }
 
     onPostUpdate(engine, delta) {
