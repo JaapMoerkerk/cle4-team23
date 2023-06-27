@@ -1,5 +1,4 @@
-import {Color, Font, FontUnit, Input, Label, Scene, Vector as textAlign, Vector} from "excalibur";
-import { Level1 } from "./level1.js";
+import {Color, Font, FontUnit, Input, Label, Scene, Vector} from "excalibur";
 import {Background} from "../classes/background.js";
 import {Settings} from "../settings.js";
 
@@ -9,9 +8,6 @@ export class Menuscreen extends Scene {
     }
 
     onInitialize(engine) {
-
-        const level1 = new Level1();
-        engine.addScene("level1", level1);
 
         const startMessage = new Label({
             text: "PRESS SPACE TO CONTINUE",

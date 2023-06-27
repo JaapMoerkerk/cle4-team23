@@ -1,12 +1,11 @@
-import {Color, Graphic, GraphicsGroup, GraphicsLayer, Line, Scene, Vector} from "excalibur";
+import {Scene} from "excalibur";
 import {Resources} from "../resources.js";
 import {Background} from "../classes/background.js";
 import {Player} from "../classes/player.js";
 import {Ground} from "../classes/ground.js";
 import {Settings} from "../settings.js";
-import {Trash} from "../classes/trash.js"
 import {Spawner} from "../classes/spawner.js";
-import {Score} from "../classes/score.js";
+import {Healthbar} from "../classes/healthbar.js";
 
 /**
  * Startscreen (scene 1) class
@@ -27,17 +26,19 @@ export class Level1 extends Scene{
     onInitialize(engine) {
         Resources.Music.play(0.5)
         const background1 = new Background("Background", 200)
-        this.add(background1)
-        const player = new Player()
-        this.add(player)
         const ground = new Ground(Settings.groundHeight)
+        const healthbar = new Healthbar(engine)
+        const player = new Player(healthbar)
+        const spawner = new Spawner()
+
+        healthbar.setPlayer(player)
+
+        this.add(background1)
+        this.add(player)
         this.add(ground)
-        const trashSpawner = new Spawner(true)
-        this.add(trashSpawner)
-        const score = new Score()
-        this.add(score)
-        // const rocketSpawner = new Spawner(false)
-        // this.add(rocketSpawner)
+        this.add(healthbar)
+        this.add(spawner)
     }
 }
+
 

@@ -1,8 +1,6 @@
 import {Resources} from "../resources.js";
 import {Actor, CollisionType, Shape, Vector} from "excalibur";
 import {Settings} from "../settings.js";
-import {Gameover} from "../scenes/gameover.js";
-import {Player} from "./player";
 
 export class Trash extends Actor {
     constructor(trashSpeed) {
@@ -12,11 +10,11 @@ export class Trash extends Actor {
         })
         this.trashSpeed = trashSpeed
         this.graphics.use(Resources.Trash.toSprite())
-        this.scale.scaleEqual(0.02)
+        this.scale.scaleEqual(0.03)
     }
 
     onInitialize(engine) {
-        this.pos = new Vector(Settings.trashStartx, Settings.trashStarty)
+        this.pos = new Vector(Settings.trashStartX, Settings.trashStartY)
         this.vel = new Vector(-this.trashSpeed, 0)
     }
 }

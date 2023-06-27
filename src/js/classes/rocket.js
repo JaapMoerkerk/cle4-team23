@@ -4,18 +4,19 @@ import {Settings} from "../settings.js";
 
 
 export class Rocket extends Actor {
-    constructor(rocketStartx) {
+    constructor(rocketStartX, rocketSpeed) {
         super({
-            collider: Shape.Box(3000,3000,Vector.Half, new Vector(0,0)),
+            collider: Shape.Box(130,500,Vector.Half, new Vector(0,0)),
             collisionType: CollisionType.Passive
         })
-        this.rocketStartx = rocketStartx
+        this.rocketStartX = rocketStartX
+        this.rocketSpeed = rocketSpeed
         this.graphics.use(Resources.Rocket.toSprite())
-        this.scale.scaleEqual(0.02)
+        this.scale.scaleEqual(0.5)
     }
 
     onInitialize(engine) {
-        this.pos = new Vector(this.rocketStartx, Settings.rocketStarty)
-        this.vel = new Vector(0, Settings.rocketSpeed)
+        this.pos = new Vector(this.rocketStartX, Settings.rocketStartY)
+        this.vel = new Vector(0, this.rocketSpeed)
     }
 }

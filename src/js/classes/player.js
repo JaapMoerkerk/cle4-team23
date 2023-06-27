@@ -1,6 +1,9 @@
 import {Resources} from "../resources.js";
-import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
+import {Actor, Animation, CollisionType, Input, range, SpriteSheet, Vector} from "excalibur";
 import {Settings} from "../settings.js"
+import {Trash} from "./trash.js";
+import {Rocket} from "./rocket.js";
+import {Medkit} from "./medkit.js";
 
 /**
  * Main character (player) class
@@ -12,12 +15,13 @@ import {Settings} from "../settings.js"
  */
 
 export class Player extends Actor {
-    constructor() {
+    constructor(healthbar) {
         super({
             width: 140,
-            height: 510,
-            anchor: new Vector(0.15, 0),
+            height: 470,
+            anchor: new Vector(0.15, 0.35),
         })
+        this.healthbar = healthbar
         this.speed = 0
         this.isJumping = false
 
@@ -63,31 +67,35 @@ export class Player extends Actor {
          * @type {Animation}
          */
 
-        const walk = Animation.fromSpriteSheet(walkSheet, range(0, 14), 50)
+        const walk = Animation.fromSpriteSheet(walkSheet, range(0, 14), 30)
         this.graphics.add("walk", walk)
 
-        const run = Animation.fromSpriteSheet(runSheet, range(0, 14), 50)
+        const run = Animation.fromSpriteSheet(runSheet, range(0, 14), 30)
         this.graphics.add("run", run)
 
-        const jump = Animation.fromSpriteSheet(jumpSheet, range(0, 14), 50)
+        const jump = Animation.fromSpriteSheet(jumpSheet, range(0, 14), 30)
         this.graphics.add("jump", jump)
 
-        const walkSlow = Animation.fromSpriteSheet(walkSheet, range(0, 14), 120)
-        this.graphics.add("walkslow", walkSlow)
+        const runLeft = Animation.fromSpriteSheet(runSheet, range(0, 14), 150)
+        this.graphics.add("runleft", runLeft)
 
         /**
          * Standard animation setting, scale and position
          */
 
         this.graphics.use("walk")
-        this.scale.scaleEqual(0.4)
+        this.scale.scaleEqual(0.6)
     }
 
     onInitialize(engine) {
+        this.engine = engine
         this.pos = new Vector(Settings.startX, Settings.startY)
         this.vel = new Vector(this.speed, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = true
+        this.on('collisionstart', (event) => this.collisionHandler(event))
+        this.on('collisionstart', (event) => this.enableJump(event))
+
     }
 
     /**
@@ -114,7 +122,7 @@ export class Player extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
-            this.graphics.use('walkslow')
+            this.graphics.use('runleft')
             if (this.speed >= 0){
                 this.speed = -Settings.runSpeed
             }
@@ -135,6 +143,29 @@ export class Player extends Actor {
             this.speed = 0
             this.graphics.use('walk')
         }
+    }
+
+    collisionHandler(event) {
+
+        if (event.other instanceof Trash){
+            this.healthbar.loseHealth(Settings.trashDamage)
+            event.other.kill()
+        }
+
+        if (event.other instanceof Rocket) {
+            this.healthbar.loseHealth(Settings.rocketDamage)
+            event.other.kill()
+        }
+
+        if (event.other instanceof Medkit) {
+            this.healthbar.resetHealth()
+            event.other.kill()
+        }
+
+    }
+
+    enableJump(event){
+
     }
 }
 

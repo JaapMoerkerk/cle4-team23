@@ -7,23 +7,37 @@ import {Vector} from "excalibur";
 export const Settings = {
     //General
     gravity: 3000,
-    screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight,
-    groundHeight: 200,
+    screenWidth: 1920,
+    screenHeight: 1080,
+    groundHeight: 60,
 
     //Player:
-    startY: 500,
+    startY: 600,
     startX: 200,
-    runSpeed: 200,
+    runSpeed: 400,
 
-    //Obstacle
-    trashStartx: window.innerWidth + 100,
-    trashStarty: window.innerHeight - 250,
-    trashIntervalMin: 2000,
-    trashIntervalMax: 4000,
+    //Trashcan
+    trashStartX: 2100,
+    trashStartY: 980,
+    trashIntervalMin: 1000,
+    trashIntervalMax: 3500,
     trashSpeedMin: 600,
-    TrashSpeedMax: 900,
+    trashSpeedMax: 900,
+    trashDamage: 100,
 
-    rocketStarty: window.innerHeight - 500,
-    rocketSpeed: 100
+    //Rocket
+    rocketStartY: -500,
+    rocketIntervalMin: 2500,
+    rocketIntervalMax: 4500,
+    rocketSpeedMin: 400,
+    rocketSpeedMax: 900,
+    rocketDamage: 200,
+
+    //Healthbar
+    healthbarWidth: 500,
+    healthbarHeight: 50,
+
+    //Medkit
+    medkitStartY: -500,
+    medkitInterval: 15000,
 }
