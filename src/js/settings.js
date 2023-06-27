@@ -14,16 +14,24 @@ export const Settings = {
     //Player:
     startY: 500,
     startX: 200,
-    runSpeed: 200,
+    runSpeed: 400,
 
-    //Obstacle
+    //Trashcan
     trashStartx: window.innerWidth + 100,
     trashStarty: window.innerHeight - 250,
-    trashIntervalMin: 2000,
-    trashIntervalMax: 4000,
+    trashIntervalMin: 1000,
+    trashIntervalMax: 3500,
     trashSpeedMin: 600,
-    TrashSpeedMax: 900,
+    trashSpeedMax: 900,
 
-    rocketStarty: window.innerHeight - 500,
-    rocketSpeed: 100
+    //Rocket
+    rocketStarty: -500,
+    rocketIntervalMin: 2500,
+    rocketIntervalMax: 4500,
+    rocketSpeedMin: 200,
+    rocketSpeedMax: 700,
+
+    //Healthbar
+    healthbarWidth: 500,
+    healthbarHeight: 50
 }

@@ -10,9 +10,6 @@ export class Menuscreen extends Scene {
 
     onInitialize(engine) {
 
-        const level1 = new Level1();
-        engine.addScene("level1", level1);
-
         const startMessage = new Label({
             text: "PRESS SPACE TO CONTINUE",
             pos: new Vector(0, Settings.screenHeight - 200),

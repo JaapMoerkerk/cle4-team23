@@ -1,6 +1,8 @@
 import {Resources} from "../resources.js";
 import {Actor, Animation, CollisionType, Input, Physics, range, SpriteSheet, Vector} from "excalibur";
 import {Settings} from "../settings.js"
+import {Trash} from "./trash.js";
+import {Rocket} from "./rocket.js";
 
 /**
  * Main character (player) class
@@ -12,12 +14,14 @@ import {Settings} from "../settings.js"
  */
 
 export class Player extends Actor {
-    constructor() {
+    constructor(healthbar) {
         super({
             width: 140,
-            height: 510,
-            anchor: new Vector(0.15, 0),
+            height: 470,
+            anchor: new Vector(0.15, 0.35),
         })
+        this.isDead = false
+        this.healthbar = healthbar
         this.speed = 0
         this.isJumping = false
 
@@ -72,8 +76,8 @@ export class Player extends Actor {
         const jump = Animation.fromSpriteSheet(jumpSheet, range(0, 14), 50)
         this.graphics.add("jump", jump)
 
-        const walkSlow = Animation.fromSpriteSheet(walkSheet, range(0, 14), 120)
-        this.graphics.add("walkslow", walkSlow)
+        const runLeft = Animation.fromSpriteSheet(runSheet, range(0, 14), 200)
+        this.graphics.add("runleft", runLeft)
 
         /**
          * Standard animation setting, scale and position
@@ -84,10 +88,12 @@ export class Player extends Actor {
     }
 
     onInitialize(engine) {
+        this.engine = engine
         this.pos = new Vector(Settings.startX, Settings.startY)
         this.vel = new Vector(this.speed, 0)
         this.body.collisionType = CollisionType.Active
         this.body.useGravity = true
+        this.on('collisionstart', (event) => this.collisionHandler(event))
     }
 
     /**
@@ -114,7 +120,7 @@ export class Player extends Actor {
         }
 
         if (engine.input.keyboard.wasPressed(Input.Keys.A)) {
-            this.graphics.use('walkslow')
+            this.graphics.use('runleft')
             if (this.speed >= 0){
                 this.speed = -Settings.runSpeed
             }
@@ -134,6 +140,16 @@ export class Player extends Actor {
         if (engine.input.keyboard.wasReleased(Input.Keys.D) || engine.input.keyboard.wasReleased((Input.Keys.A))){
             this.speed = 0
             this.graphics.use('walk')
+        }
+    }
+
+    collisionHandler(event) {
+        if (event.other instanceof Trash){
+            this.healthbar.loseHealth(100)
+        }
+
+        if (event.other instanceof Rocket) {
+            this.healthbar.loseHealth(200)
         }
     }
 }

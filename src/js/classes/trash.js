@@ -1,8 +1,6 @@
 import {Resources} from "../resources.js";
 import {Actor, CollisionType, Shape, Vector} from "excalibur";
 import {Settings} from "../settings.js";
-import {Gameover} from "../scenes/gameover.js";
-import {Player} from "./player";
 
 export class Trash extends Actor {
     constructor(trashSpeed) {
