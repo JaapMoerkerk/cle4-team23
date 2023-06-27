@@ -126,7 +126,7 @@ export class Player extends Actor {
             this.graphics.use('jump')
         }
 
-        if (this.isJumping && this.pos.y >= 345){
+        if (this.isJumping && this.pos.y >= 330){
             this.isJumping = false
             this.graphics.use('walk')
         }

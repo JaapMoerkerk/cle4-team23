@@ -6,6 +6,7 @@ import {Ground} from "../classes/ground.js";
 import {Settings} from "../settings.js";
 import {Trash} from "../classes/trash.js"
 import {Spawner} from "../classes/spawner.js";
+import {Score} from "../classes/score.js";
 
 /**
  * Startscreen (scene 1) class
@@ -33,9 +34,10 @@ export class Level1 extends Scene{
         this.add(ground)
         const trashSpawner = new Spawner(true)
         this.add(trashSpawner)
+        const score = new Score()
+        this.add(score)
         // const rocketSpawner = new Spawner(false)
         // this.add(rocketSpawner)
     }
 }
-
 

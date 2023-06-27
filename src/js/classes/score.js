@@ -1,25 +1,30 @@
-import {Color, Engine, Font, FontUnit, Label, Vector} from "excalibur";
+import {Color, Label, Actor, Vector, Font} from "excalibur";
 
-export class Score extends Engine {
-    onInitialize(engine) {
-        this.score = 0
-        console.log('score telt')
-        this.mylabel = new Label({
+export class Score extends Actor {
+    constructor() {
+        super({
+            pos: new Vector(10, 10)
+        });
+
+        this.score = 0;
+
+        this.scoreLabel = new Label({
+            pos: new Vector(50, 50),
             text: `Score: ${this.score}`,
-            pos: new Vector(100, 100),
+            color: Color.Red,
             font: new Font({
                 family: 'impact',
-                size: 40,
-                unit: FontUnit.Px,
-                color:Color.Red
+                size: 40
             })
-        })
-        this.add(this.mylabel)
+        });
+        this.addChild(this.scoreLabel);
     }
 
-    updateScore(){
-        this.score++
-        this.mylabel.text = `Score: ${this.score}`
-        console.log("${this,score}")
+    onInitialize(engine) {
+        setInterval(() => {
+            this.score++;
+            this.scoreLabel.text = `Score: ${this.score}`;
+        }, 1000);
     }
 }
+
