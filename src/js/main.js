@@ -26,6 +26,7 @@ export class Main extends Engine {
         Physics.gravity = new Vector(0, Settings.gravity)
 
         this.showDebug(true)
+        ResourceLoader.suppressPlayButton = true
     }
 }
 

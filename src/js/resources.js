@@ -3,6 +3,7 @@ import walkSheet from '../img/characters/player_spritesheet_walk_1x15.png'
 import runSheet from '../img/characters/player_spritesheet_run_1x15.png'
 import jumpSheet from '../img/characters/player_spritesheet_jump_1x15.png'
 import backgroundImage from '../img/backgrounds/park1943_present_long.png'
+import rocket from '../img/objects/rocket.png'
 import trash from '../img/objects/TrashCan.png'
 import jump from '../sound/jump.mp3'
 import music from '../sound/music.mp3'
@@ -24,6 +25,7 @@ const Resources = {
     PlayerJump: new ImageSource(jumpSheet),
     Background: new ImageSource(backgroundImage),
     Trash: new ImageSource(trash),
+    Rocket: new ImageSource(rocket),
     JumpSound: new Sound(jump),
     Music: new Sound(music),
     ThanksSound: new Sound(thanks)
@@ -34,8 +36,9 @@ const Resources = {
 const ResourceLoader = new Loader([
     Resources.PlayerWalk, Resources.PlayerRun,
     Resources.PlayerJump, Resources.Background,
-    Resources.Trash, Resources.JumpSound, Resources.Music, Resources.ThanksSound
-    // Resources.rocket
+    Resources.Trash, Resources.Rocket,
+    Resources.JumpSound, Resources.Music,
+    Resources.ThanksSound
 ])
 
 export { Resources, ResourceLoader }

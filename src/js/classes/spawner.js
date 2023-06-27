@@ -1,11 +1,13 @@
 import { Actor, Random, Timer } from "excalibur";
 import { Trash } from "./trash.js";
+import {Settings} from "../settings.js";
+import {Rocket} from "./rocket.js";
 
 export class Spawner extends Actor {
-    constructor(gameinstance) {
-        super();
-        this.random = new Random(1337);
-        this.gameinstance = gameinstance
+    constructor(trashBool) {
+        super()
+        this.random = new Random(5555);
+        this.trashBool = trashBool
     }
 
     onInitialize(engine) {
@@ -14,24 +16,25 @@ export class Spawner extends Actor {
             interval: this.getRandomInterval(),
             repeats: true
         });
-
-        engine.currentScene.add(this.timer);
-        this.timer.start();
+        engine.currentScene.add(this.timer)
+        this.timer.start()
     }
 
     spawn(engine) {
-        console.log("spawn");
-        const Trash1 = new Trash(
-            this.random.integer(0, 800),
-            this.random.integer(0, 600),
-            this.gameinstance
-        );
-        engine.currentScene.add(Trash1);
+        if (this.trashBool) {
+            const trash = new Trash(
+                this.random.integer(Settings.trashSpeedMin, Settings.trashSpeedMax)
+            )
+            engine.currentScene.add(trash)
+        }
 
-        this.timer.interval = this.getRandomInterval();
+        if (!this.trashBool) {
+            const rocket = new Rocket()
+            engine.currentScene.add(rocket)
+        }
     }
 
     getRandomInterval() {
-        return this.random.integer(5000, 10000);
+        return this.random.integer(Settings.trashIntervalMin, Settings.trashIntervalMax);
     }
 }
