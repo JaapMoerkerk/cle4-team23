@@ -2,7 +2,6 @@ import { Resources } from "../resources.js";
 import {Actor, CollisionType, Engine, Vector} from "excalibur";
 import {Settings} from "../settings.js";
 import {EndScreen} from "../scenes/endScreen.js";
-
 import * as ex from "excalibur"
 import {Player} from "./player";
 
