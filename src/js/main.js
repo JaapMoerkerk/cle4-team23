@@ -29,7 +29,7 @@ export class Main extends Engine {
         Physics.useArcadePhysics()
         Physics.gravity = new Vector(0, Settings.gravity)
 
-        this.showDebug(true)
+        // this.showDebug(true)
         ResourceLoader.suppressPlayButton = true
     }
 }
