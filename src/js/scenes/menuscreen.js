@@ -11,11 +11,11 @@ export class Menuscreen extends Scene {
 
         const startMessage = new Label({
             text: "PRESS SPACE TO CONTINUE",
-            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight - 50),
+            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight - 40),
             font: new Font({
                 textAlign: TextAlign.Center,
                 family: 'bahnschrift',
-                color: Color.DarkGray,
+                color: Color.Black,
                 size: 60,
                 unit: FontUnit.Px,
                 bold: true
@@ -24,7 +24,7 @@ export class Menuscreen extends Scene {
 
         const title = new Label({
             text: `PARKRUNNER 1943`,
-            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight/2 - 40),
+            pos: new Vector(Settings.screenWidth/2, Settings.screenHeight/2 - 20),
             font: new Font({
                 textAlign: TextAlign.Center,
                 family: 'bahnschrift',
@@ -54,6 +54,7 @@ export class Menuscreen extends Scene {
 
         // Add the label actor to the scene
         const menuBackground = new Background('Background', 50)
+        menuBackground.graphics.opacity = 0.7
         this.add(menuBackground)
 
         this.add(startMessage)
