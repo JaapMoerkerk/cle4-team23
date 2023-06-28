@@ -8,6 +8,7 @@ import trash from '../img/objects/TrashCan.png'
 import jump from '../sound/jump.mp3'
 import music from '../sound/music.mp3'
 import thanks from '../sound/thanks.mp3'
+import EndGameImage from '../img/backgrounds/R.jpg'
 
 
 
@@ -28,7 +29,8 @@ const Resources = {
     Rocket: new ImageSource(rocket),
     JumpSound: new Sound(jump),
     Music: new Sound(music),
-    ThanksSound: new Sound(thanks)
+    ThanksSound: new Sound(thanks),
+    Enggameimage: new ImageSource(EndGameImage)
 
     // rocket: new ImageSource(rocket)
 
@@ -38,7 +40,7 @@ const ResourceLoader = new Loader([
     Resources.PlayerJump, Resources.Background,
     Resources.Trash, Resources.Rocket,
     Resources.JumpSound, Resources.Music,
-    Resources.ThanksSound
+    Resources.ThanksSound, Resources.Enggameimage,
 ])
 
 export { Resources, ResourceLoader }
